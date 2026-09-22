@@ -52,8 +52,15 @@ la:
 	$(MAKE) ARCH=loongarch64 run
 
 vf2:
-	$(MAKE) ARCH=riscv64 APP_FEATURES=vf2 MYPLAT=axplat-riscv64-visionfive2 BUS=mmio build
+	$(MAKE) ARCH=riscv64 APP_FEATURES=vf2 MYPLAT=axplat-riscv64-visionfive2 BUS=mmio FEATURES=driver-dwmac NET=y IP=192.168.10.105 GW=192.168.10.1 LOG=warn build
+	cp /home/os/rust/StarryOS/StarryOS_visionfive2.bin /srv/tftp/ && sync
+	echo 'tftpboot 0x40200000 StarryOS_visionfive2.bin; go 0x40200000'
 sg2002:
 	$(MAKE) ARCH=riscv64 APP_FEATURES=sg2002 MYPLAT=axplat-riscv64-sg2002 BUS=mmio SMP=1 UIMAGE=y LOG=info build
+	scp StarryOS_riscv64-sg2002.uimg root@${HWIP}:/root/ && ssh root@${HWIP} "sync; reboot; date"
+	# ssh root@${HWIP} "mount /dev/mmcblk0p3 /root/mnt"; scp StarryOS_riscv64-sg2002.uimg root@${HWIP}:/root/mnt/ && ssh root@${HWIP} "sync; umount /root/mnt;reboot; date"
+	# uboot> ext4load mmc 0:2 0x80200000 /root/StarryOS_riscv64-sg2002.uimg; bootm 0x80200000 - $$fdtcontroladdr;
+
+HWIP=192.168.10.102
 
 .PHONY: build run justrun debug disasm clean

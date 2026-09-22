@@ -11,5 +11,7 @@ echo
 
 # Do your initialization here!
 
+#ls /
 cd ~
+#busybox wget  http://192.168.10.50:8000/dl/hi.txt -O hi.txt
 sh --login

@@ -657,13 +657,13 @@ dependencies = [
 
 [[package]]
 name = "axplat-riscv64-sg2002"
-version = "0.1.0"
-source = "git+https://github.com/elliott10/axplat-riscv64-sg2002.git?rev=92a95ef8#92a95ef84ff126bad82a5c762c954021f59a895b"
+version = "0.2.0"
+source = "git+https://github.com/elliott10/axplat-riscv64-sg2002.git?rev=bc819af8#bc819af8e3a41ca05254b838e3a83134cf07460a"
 dependencies = [
  "axconfig-macros",
  "axcpu",
  "axplat",
- "dw_apb_uart",
+ "dw_uart_rs",
  "kspin",
  "lazyinit",
  "log",
@@ -675,7 +675,7 @@ dependencies = [
 [[package]]
 name = "axplat-riscv64-visionfive2"
 version = "0.3.0"
-source = "git+https://github.com/Starry-OS/axplat-riscv64-visionfive2.git?tag=dev-v03#55c5ea6c652742d92e9150c857864d5909197633"
+source = "git+https://github.com/Starry-OS/axplat-riscv64-visionfive2.git?branch=xiao-dev-v03#89e09c7e7b0af47d59e2f3d64cfd2733144fc847"
 dependencies = [
  "axconfig-macros",
  "axcpu",
@@ -813,7 +813,7 @@ dependencies = [
  "quote",
  "regex",
  "rustc-hash",
- "shlex",
+ "shlex 1.3.0",
  "syn 2.0.117",
 ]
 
@@ -908,6 +908,16 @@ name = "byteorder"
 version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1fd0f2584146f6f2ef48085050886acf353beff7305ebd1ae69500e27c67f64b"
+
+[[package]]
+name = "cc"
+version = "1.4.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "54413ede23c2daf518f35156dfde027feb2374004d63bd497f983c8db9c0e313"
+dependencies = [
+ "find-msvc-tools",
+ "shlex 2.0.1",
+]
 
 [[package]]
 name = "cexpr"
@@ -1208,9 +1218,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "117240f60069e65410b3ae1bb213295bd828f707b5bec6596a1afc8793ce0cbc"
 
 [[package]]
-name = "dw_apb_uart"
+name = "dw_uart_rs"
 version = "0.2.0"
-source = "git+https://github.com/elliott10/dw_apb_uart.git?rev=9de1bf0f#9de1bf0fb36a17ba2cc29cbed47131ed1b8de12f"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "da3751978e2d9bced3cb480631bb2c14098357ae269ac95475720aee545c6dcd"
 dependencies = [
  "tock-registers 0.8.1",
 ]
@@ -1292,6 +1303,12 @@ name = "fdt-parser"
 version = "0.4.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1e175b7c46c98b80c8130665802cb3d5407fb6042b70a3d25f1b6edcb8f3de41"
+
+[[package]]
+name = "find-msvc-tools"
+version = "0.1.13"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ef25905e51abafe4dcea6c15fec58c57b601cdbd0ee53d22ea1d3016c587d39b"
 
 [[package]]
 name = "flatten_objects"
@@ -2185,6 +2202,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0fda2ff0d084019ba4d7c6f371c95d8fd75ce3524c3cb8fb653a3023f6323e64"
 
 [[package]]
+name = "shlex"
+version = "2.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f8fadd59c855ef2080decdef8ff161eb6661b86933c9d82e5ba29dc602a55aba"
+
+[[package]]
 name = "simple-sdmmc"
 version = "0.1.0"
 source = "git+https://github.com/Starry-OS/simple-sdmmc.git?rev=9e6420c#9e6420c3bcaa67d4c3a6ecd2b24a2e7ee9118f9b"
@@ -2328,6 +2351,8 @@ dependencies = [
  "starry-signal",
  "starry-vm",
  "syscalls",
+ "tinyusb-sys",
+ "tpu-sg2002",
  "x86",
  "zerocopy 0.8.48",
 ]
@@ -2517,6 +2542,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "tinyusb-sys"
+version = "0.1.0"
+source = "git+https://github.com/elliott10/tinyusb-sys.git#d0437675fde0a8248f032cc66e1fde5dacdebe34"
+dependencies = [
+ "cc",
+]
+
+[[package]]
 name = "tock-registers"
 version = "0.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2557,6 +2590,14 @@ name = "toml_write"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5d99f8c9a7727884afe522e9bd5edbfc91a3312b36a77b5fb8926e4c31a41801"
+
+[[package]]
+name = "tpu-sg2002"
+version = "0.1.0"
+source = "git+https://github.com/elliott10/tpu_sg2002.git?rev=7ee2eab4#7ee2eab4b784d7aa7c0046dd00ad993ce536718d"
+dependencies = [
+ "log",
+]
 
 [[package]]
 name = "uart_16550"
